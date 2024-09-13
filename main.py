@@ -12,7 +12,7 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 DINING_MESSAGE = """
 [공지]  🍖 회식 참여 인원 조사
-    > {}월 {}일 목요일 오후 6시~ 
+> {}월 {}일 목요일 오후 6시~ 
 오늘 퇴근 전 까지 1️⃣(참)  2️⃣(불참) 으로 참석여부 알려주세요.
 
 (추가) 매월 2회 / 2,4주차 목요일에 진행하는 편안한(회식)자리입니다
@@ -21,8 +21,7 @@ DINING_MESSAGE = """
 
 
 async def sendDiningSurveyMessage():
-    # now = datetime.now()
-    now = datetime.datetime(2025, 3, 6, 0, 0, 0)
+    now = datetime.now()
     if isNotSendDiningMessageDate(now):
         return
     await client.wait_until_ready()
