@@ -38,10 +38,10 @@ async def sendDiningSurveyMessage():
 
 def isNotSendDiningMessageDate(now):
     thursdayOfNextWeek = getThursdayOfNextWeek(now)
-    numberOfNextWeek = getNumberOfWeekOfMonth(thursdayOfNextWeek)
+    numberOfWeekDayOfNextWeek = getNumberOfWeekOfMonth(thursdayOfNextWeek)
     koreaHolidays = holidays.KR(years=now.year)
     if (
-        numberOfNextWeek != 2 and numberOfNextWeek != 4
+        numberOfWeekDayOfNextWeek != 2 and numberOfWeekDayOfNextWeek != 4
     ) or thursdayOfNextWeek in koreaHolidays:
         return True
 
