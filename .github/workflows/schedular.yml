@@ -1,0 +1,29 @@
+name: Run Discord Bot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install discord.py holidays pyyaml apscheduler
+
+      - name: Run script
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+        run: python main.py
+
