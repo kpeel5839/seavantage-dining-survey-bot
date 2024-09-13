@@ -50,15 +50,17 @@ def isNotSendDiningMessageDate(now):
 
 
 def getThursdayOfNextWeek(now):
+    THURSDAY_WEEKDAY_PERIOD = 10
     currentWeekday = now.weekday()
-    daysUntilNextThursday = 10 - currentWeekday
+    daysUntilNextThursday = THURSDAY_WEEKDAY_PERIOD - currentWeekday
     return now + datetime.timedelta(days=daysUntilNextThursday)
 
 
 def getNumberOfWeekOfMonth(now):
+    FIRST_WEEK_PIVOT = 3
     firstDateTime = now.replace(day=1)
     firstDayWeekDay = firstDateTime.weekday()
-    addition = 1 if firstDayWeekDay <= 3 else 0
+    addition = 1 if firstDayWeekDay <= FIRST_WEEK_PIVOT else 0
     lastDateTimeOfFirstWeek = firstDateTime + datetime.timedelta(
         days=6 - firstDayWeekDay
     )
