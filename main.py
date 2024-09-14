@@ -102,7 +102,7 @@ def createDiningMessage(now):
 @client.event
 async def on_ready():
     await client.change_presence(
-        status=discord.Status.online, activity=discord.Game("회식 수요 조사 봇 가동 중")
+        status=discord.Status.online, activity=discord.Game("회식 수요 조사")
     )
     await sendDiningSurveyMessage()
     await client.close()
