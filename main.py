@@ -27,7 +27,7 @@ DINING_MESSAGE = """
 
 
 async def sendDiningSurveyMessage():
-    now = datetime.now()
+    now = datetime.datetime.now()
     if isNotSendDiningMessageDate(now):
         return
     await client.wait_until_ready()
