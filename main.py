@@ -16,10 +16,12 @@ intents.message_content = True
 client = commands.Bot(command_prefix="./", intents=intents)
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
+ATTEND_EMOJI_CODE = "<:attend:860867683088072734>"
+NOT_ATTEND_EMOJI_CODE = "<:no_attend:860867683083354112>"
 DINING_MESSAGE = """
 [공지]  🍖 회식 참여 인원 조사
 > {}월 {}일 목요일 오후 6시~ 
-오늘 퇴근 전 까지 1️⃣(참)  2️⃣(불참) 으로 참석여부 알려주세요.
+오늘 퇴근 전 까지 {}, {} 으로 참석여부 알려주세요.
 
 (추가) 매월 2회 / 2,4주차 목요일에 진행하는 편안한(회식)자리입니다
 각자 일정에 맞게 참석하시면 됩니다
@@ -36,8 +38,8 @@ async def sendDiningSurveyMessage():
 
     if channel:
         createMessage = await channel.send(diningMessage)
-        await createMessage.add_reaction("1️⃣")
-        await createMessage.add_reaction("2️⃣")
+        await createMessage.add_reaction(ATTEND_EMOJI_CODE)
+        await createMessage.add_reaction(NOT_ATTEND_EMOJI_CODE)
     else:
         print(f"Cannot find channel with ID {str(CHANNEL_ID)}")
 
@@ -96,7 +98,7 @@ def createDiningMessage(now):
     thursDayOfNextWeek = getThursdayOfNextWeek(now)
     month = str(thursDayOfNextWeek.month)
     day = str(thursDayOfNextWeek.day)
-    return DINING_MESSAGE.format(month, day)
+    return DINING_MESSAGE.format(month, day, ATTEND_EMOJI_CODE, NOT_ATTEND_EMOJI_CODE)
 
 
 @client.event
